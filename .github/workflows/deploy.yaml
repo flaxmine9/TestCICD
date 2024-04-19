@@ -28,7 +28,7 @@ jobs:
       - name: Publish
         run: dotnet publish ./TestCICDWpf.sln --configuration Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-restore
 
-      - uses: actions/create-release@v4
+      - uses: actions/create-release@v3
         id: create_release
         env:
           GITHUB_TOKEN: ${{ secrets.Token_github }}
