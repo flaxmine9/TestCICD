@@ -26,7 +26,7 @@ jobs:
         run: dotnet build ./TestCICDWpf.sln --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish ./TestCICDWpf.sln --configuration Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-build
+        run: dotnet publish ./TestCICDWpf.sln --configuration Release -r win-x64 -p:PublishSingleFile=true --no-restore
 
       - uses: actions/create-release@v1
         id: create_release
