@@ -36,7 +36,7 @@ jobs:
            tag_name: ${{ github.ref }}
            release: ${{ github.ref }}
 
-      - uses: csexton/release-asset/action@v2
+      - uses: csexton/release-asset-action@v2
         with:
            github-token: ${{ secrets.GITHUB_TOKEN }}
            pattern: ./TestCICDWpf/bin/Release/net6.0-windows/publish/*.exe
