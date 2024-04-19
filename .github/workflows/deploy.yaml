@@ -26,7 +26,21 @@ jobs:
         run: dotnet build ./TestCICDWpf.sln --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish ./TestCICDWpf.sln --configuration Release --no-restore
+        run: dotnet publish ./TestCICDWpf.sln --configuration Release --self-contained -p:PublishSingleFile=true --no-build
+
+      - uses: actions/create-release@v4
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+           tag_name: ${{ github.ref }}
+           release: ${{ github.ref }}
+
+      - uses: csexton/release-asset/action@v4
+        with:
+           github-token: ${{ secrets.GITHUB_TOKEN }}
+           pattern: ./TestCICDWpf/bin/Release/net6.0-windows/publish/*.exe
+           release-url: ${{ steps.create_release.output.upload_url }}
 
       - name: Upload
         uses: actions/upload-artifact@v4
