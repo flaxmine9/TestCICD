@@ -12,7 +12,7 @@
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
 
-        <Label Content="Hello CI/CD" FontSize="32" />
+        <Label Content="Hello CI/CD--2" FontSize="32" />
 
     </Grid>
 </Window>
