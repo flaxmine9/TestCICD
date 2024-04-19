@@ -9,5 +9,10 @@
     Width="800"
     Height="450"
     mc:Ignorable="d">
-    <Grid />
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        <Label Content="Hello CI/CD" FontSize="32" />
+
+    </Grid>
 </Window>
