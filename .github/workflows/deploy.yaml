@@ -42,6 +42,7 @@ jobs:
            pattern: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish/*.exe
            release-url: ${{ steps.create_release.output.upload_url }}
 
+
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
