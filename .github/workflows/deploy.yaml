@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore ./TestCICDWpf.sln
 
       - name: Build
-        run: dotnet build ./TestCICDWpf.sln --configuration Release /p:GenerateAppxPackageOnBuild=true --no-restore
+        run: msbuild ./TestCICDWpf.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
       - name: Upload
         uses: actions/upload-artifact@v4
