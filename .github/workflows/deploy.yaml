@@ -10,10 +10,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/ckeckout@v3
+      - uses: actions/ckeckout@v2
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v2
         with:
            dotnet-version: 6.0.x
       - name: Restore
