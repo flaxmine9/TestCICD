@@ -19,18 +19,12 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore
       run: dotnet restore
-      working-directory: ./TestCICDWpf
 
     - name: Build
-      run: dotnet build -c Release
-      working-directory: ./TestCICDWpf
-
-    - name: Test
       run: dotnet build -c Release
 
     - name: Publish
       run: dotnet publish -c Release
-      working-directory: ./TestCICDWpf
 
     - name: Upload
       uses: actions/upload-artifact@v4
