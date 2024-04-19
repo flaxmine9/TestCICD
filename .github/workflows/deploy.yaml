@@ -3,8 +3,8 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches:
-      - master    
+    tags:
+      - "MyTag/v*"    
 
 env:
    DOTNET_VERSION: "6.0.x"
