@@ -28,7 +28,7 @@ jobs:
       - name: Publish
         run: dotnet publish ./TestCICDWpf.sln --configuration Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-restore
 
-      - uses: actions/create-release@v1
+      - uses: actions/create-release@v4
         id: create_release
         env:
           GITHUB_TOKEN: ${{ secrets.Token_github }}
@@ -36,7 +36,7 @@ jobs:
            tag_name: ${{ github.ref }}
            release_name: ${{ github.ref }}
 
-      - uses: csexton/release-asset-action@v2
+      - uses: csexton/release-asset-action@v4
         with:
            github-token: ${{ secrets.Token_github }}
            pattern: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish/*.exe
