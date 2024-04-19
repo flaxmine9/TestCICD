@@ -29,5 +29,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
            name: Build
-           path: ./TestCICDWpf/TestCICDWpf/bin/Release/net6.0-windows/publish/TestCICDWpf.exe
+           path: ./TestCICDWpf/bin/Release/net6.0-windows/publish/TestCICDWpf.exe
   
