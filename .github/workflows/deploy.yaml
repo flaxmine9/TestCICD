@@ -47,7 +47,7 @@ jobs:
            name: Build
            path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
 
-  FTP-Deploy-Action:
+  web-deploy:
     name: FTP-Deploy-Action
     runs-on: windows-latest
     steps:
