@@ -10,7 +10,10 @@
     Height="450"
     mc:Ignorable="d">
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Background="Yellow">
 
         <Label Content="Hello CI/CD--2" FontSize="32" />
 
