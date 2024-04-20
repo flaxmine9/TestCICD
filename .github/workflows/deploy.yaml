@@ -55,7 +55,7 @@ jobs:
       with:
         fetch-depth: 2
     - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@v4
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         ftp-server: ftp://eu-west-1.sftpcloud.io
         ftp-username: a4fb7a14b0d14773b0b68c41434ec015
