@@ -46,16 +46,17 @@ jobs:
         with:
            name: Build
            path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
+
   FTP-Deploy-Action:
-    name: Deploy
+    name: FTP-Deploy-Action
     runs-on: windows-latest
     steps:
-    - name: Get latest code
-      uses: actions/checkout@v4
-
-    - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    - uses: actions/checkout@v4
       with:
-        server: ftp://eu-west-1.sftpcloud.io
-        username: a4fb7a14b0d14773b0b68c41434ec015
-        password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
+        fetch-depth: 2
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@v4
+      with:
+        ftp-server: ftp://eu-west-1.sftpcloud.io
+        ftp-username: a4fb7a14b0d14773b0b68c41434ec015
+        ftp-password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
