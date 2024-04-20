@@ -57,7 +57,7 @@ jobs:
     - name: ?? Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ftp://eu-west-1.sftpcloud.io
+        server: sftp://eu-west-1.sftpcloud.io
         username: a4fb7a14b0d14773b0b68c41434ec015
         password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
         protocol: sftp
