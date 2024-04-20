@@ -55,8 +55,8 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-         ftp-server: ftp://eu-west-1.sftpcloud.io
-         ftp-username: a4fb7a14b0d14773b0b68c41434ec015
-         ftp-password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
-         protocol: ftps
-         port: 21
+        ftp-server: ftp://eu-west-1.sftpcloud.io
+        ftp-username: a4fb7a14b0d14773b0b68c41434ec015
+        ftp-password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
+        protocol: ftps
+        port: 21
