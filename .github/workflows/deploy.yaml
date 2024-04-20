@@ -48,17 +48,17 @@ jobs:
            path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
 
   FTP-Deploy-Action:
-    name: ?? Deploy
+    name: Deploy
     runs-on: windows-latest
     steps:
-    - name: ?? Get latest code
+    - name: Get latest code
       uses: actions/checkout@v4
 
-    - name: ?? Sync files
+    - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: sftp://eu-west-1.sftpcloud.io
+        server: ftp://eu-west-1.sftpcloud.io
         username: a4fb7a14b0d14773b0b68c41434ec015
         password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
-        protocol: sftp
-        port: 22
+        protocol: ftps
+        port: 21
