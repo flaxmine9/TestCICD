@@ -36,7 +36,7 @@ jobs:
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-           server: ftp.159.65.94.38
+           server: ftp://eu-west-1.sftpcloud.io
            username: a4fb7a14b0d14773b0b68c41434ec015
            password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
            protocol: ftps
