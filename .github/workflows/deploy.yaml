@@ -36,10 +36,8 @@ jobs:
           name: dist
           path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/
 
-      - name: Zip folder
-        uses: montudor/action-zip@v1
-        with:
-           args: zip -qq -r ./TestCICDWpf/bin/Release/net6.0-windows/win-x64.zip win-x64
+      - name: Zip Folder
+        run: zip -r ./TestCICDWpf/bin/Release/net6.0-windows/win-x64.zip
         
   deploy:
     name: Deploy
@@ -61,5 +59,5 @@ jobs:
           password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
           protocol: ftps
           port: 21
-          local-dir: win-x64.zip/
-          server-dir: AutoDeploys2/
+          local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64.zip.zip/
+          server-dir: AutoDeploys3/
