@@ -41,8 +41,7 @@ jobs:
     steps:
       - name: Zip Folder
         run: |
-          rm -rf TestCICDWpf.zip
-          zip -r TestCICDWpf.zip
+          zip -r ./TestCICDWpf/bin/Release/net6.0-windows/win-x64.zip
         
   deploy:
     name: Deploy
