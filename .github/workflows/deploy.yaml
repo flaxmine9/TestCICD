@@ -33,7 +33,7 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: Build
+          name: dist
           path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
         
   deploy:
@@ -47,7 +47,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist
+          path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
       - name: Sync files to hosting
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
