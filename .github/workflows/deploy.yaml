@@ -33,8 +33,8 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: build
-          path: dist
+          name: dist
+          path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
         
   deploy:
     name: Deploy
@@ -46,8 +46,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: build
-          path: dist
+          name: dist
+          path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
       - name: Sync files to hosting
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -55,6 +55,6 @@ jobs:
           username: a4fb7a14b0d14773b0b68c41434ec015
           password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
           protocol: ftps
-          local-dir: dist
-          server-dir: AutoDeploys/
           port: 21
+          local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
+          server-dir: AutoDeploys/
