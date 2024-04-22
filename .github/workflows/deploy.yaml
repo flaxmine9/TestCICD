@@ -3,8 +3,8 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    tags:
-      - "MyTag/v*"    
+    branches:
+      - master   
 
 env:
    DOTNET_VERSION: "6.0.x"
@@ -27,37 +27,15 @@ jobs:
       - name: Publish
         run: dotnet publish ./TestCICDWpf.sln --configuration Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-restore
 
-      - uses: actions/create-release@v1
-        id: create_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.Token_github }}
-        with:
-           tag_name: ${{ github.ref }}
-           release_name: ${{ github.ref }}
-
-      - uses: csexton/release-asset-action@v3
-        with:
-           github-token: ${{ secrets.Token_github }}
-           pattern: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish/*.exe
-           release-url: ${{ steps.create_release.outputs.upload_url }}
-
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
            name: Build
            path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 2
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ftp.eu-west-1.sftpcloud.io
-        username: a4fb7a14b0d14773b0b68c41434ec015
-        password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
-        protocol: ftps
-        port: 21
+
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+           server: ftp://eu-west-1.sftpcloud.io
+           username: a4fb7a14b0d14773b0b68c41434ec015
+           password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
