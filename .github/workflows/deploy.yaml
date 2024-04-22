@@ -44,3 +44,4 @@ jobs:
            password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
            protocol: ftps
            port: 21
+           server-dir: UpdatesProject/
