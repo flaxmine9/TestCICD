@@ -35,13 +35,11 @@ jobs:
         with:
           name: dist
           path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/
-  zip-n-push:
-    name: Zip and Push
-    runs-on: ubuntu-latest
-    steps:
-      - name: Zip Folder
-        run: |
-          zip -r ./TestCICDWpf/bin/Release/net6.0-windows/win-x64.zip
+
+      - name: Zip folder
+        uses: montudor/action-zip@v1
+        with:
+           args: zip -qq -r ./TestCICDWpf/bin/Release/net6.0-windows/win-x64.zip win-x64
         
   deploy:
     name: Deploy
@@ -63,5 +61,5 @@ jobs:
           password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
           protocol: ftps
           port: 21
-          local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/
+          local-dir: win-x64.zip/
           server-dir: AutoDeploys2/
