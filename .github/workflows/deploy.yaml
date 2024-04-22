@@ -35,6 +35,14 @@ jobs:
         with:
           name: dist
           path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/
+  zip-n-push:
+    name: Zip and Push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Zip Folder
+        run: |
+          rm -rf TestCICDWpf.zip
+          zip -r TestCICDWpf.zip
         
   deploy:
     name: Deploy
@@ -57,4 +65,4 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/
-          server-dir: AutoDeploys/
+          server-dir: AutoDeploys2/
