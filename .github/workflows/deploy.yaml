@@ -33,15 +33,27 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-           name: Build
-           path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
-
-      - name: FTP-Deploy-Action
+          name: Build
+          path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/publish
+        
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - name: Sync files to hosting
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-           server: eu-west-1.sftpcloud.io
-           username: a4fb7a14b0d14773b0b68c41434ec015
-           password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
-           protocol: ftps
-           port: 21
-           server-dir: UpdatesProject/
+          server: eu-west-1.sftpcloud.io
+          username: a4fb7a14b0d14773b0b68c41434ec015
+          password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
+          protocol: ftps
+          port: 21
+          server-dir: Deploys/
