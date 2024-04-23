@@ -13,76 +13,48 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Create file
-      run: |
-        printf "Hello\nWorld\n" > hw.txt
-    - name: Show file content
-      run: |
-        pwd
-        ls -la
-        cat hw.txt
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          fetch-depth: 2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+           dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Restore
+        run: dotnet restore ./TestCICDWpf.sln
 
-  # deploy:
-  #   name: Deploy
-  #   needs: build
-  #   runs-on: windows-latest
-  #   steps:
-  #   - name: Sync files to hosting
-  #     uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-  #     with:
-  #       server: eu-west-1.sftpcloud.io
-  #       username: a4fb7a14b0d14773b0b68c41434ec015
-  #       password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
-  #       protocol: ftps
-  #       port: 21
-  #       local-dir: ./TestCICD/hw.txt/
-  #       server-dir: AutoDeploys4/
+      - name: Build
+        run: dotnet build ./TestCICDWpf.sln --configuration Release --no-restore
 
-  #     - uses: actions/checkout@v4
-  #       with:
-  #         lfs: true
-  #         fetch-depth: 2
-  #     - name: Setup .NET
-  #       uses: actions/setup-dotnet@v4
-  #       with:
-  #          dotnet-version: ${{ env.DOTNET_VERSION }}
-  #     - name: Restore
-  #       run: dotnet restore ./TestCICDWpf.sln
+      # - name: Publish
+      #   run: dotnet publish ./TestCICDWpf.sln --configuration Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-restore
 
-  #     - name: Build
-  #       run: dotnet build ./TestCICDWpf.sln --configuration Release --no-restore
-
-  #     # - name: Publish
-  #     #   run: dotnet publish ./TestCICDWpf.sln --configuration Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-restore
-
-  #     - name: Upload
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: dist
-  #         path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/
-
-  #     - name: Zip Folder
-  #       run: zip -r ./TestCICDWpf/bin/Release/net6.0-windows/win-x64.zip .
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: Build
+          path: ./TestCICDWpf/bin/Release/net6.0-windows/
         
-  # deploy:
-  #   name: Deploy
-  #   needs: build
-  #   runs-on: windows-latest
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v4
-  #     - name: Download artifact
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: dist
-  #         path: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64/
-  #     - name: Sync files to hosting
-  #       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-  #       with:
-  #         server: eu-west-1.sftpcloud.io
-  #         username: a4fb7a14b0d14773b0b68c41434ec015
-  #         password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
-  #         protocol: ftps
-  #         port: 21
-  #         local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/win-x64.zip/
-  #         server-dir: AutoDeploys3/
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Build
+          path: ./TestCICDWpf/bin/Release/net6.0-windows/
+      - name: Sync files to hosting
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: eu-west-1.sftpcloud.io
+          username: a4fb7a14b0d14773b0b68c41434ec015
+          password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
+          protocol: ftps
+          port: 21
+          local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/
+          server-dir: AutoDeploys4/
