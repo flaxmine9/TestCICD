@@ -58,4 +58,3 @@ jobs:
           port: 21
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
           server-dir: AutoDeploys5/
-          dry-run: true
