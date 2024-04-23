@@ -13,7 +13,7 @@
     <Grid
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        Background="red">
+        Background="Green">
 
         <Label Content="Hello CI/CD--2" FontSize="32" />
 
