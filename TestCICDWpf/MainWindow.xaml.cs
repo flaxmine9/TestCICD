@@ -23,7 +23,7 @@ namespace TestCICDWpf
                 var currentDirectory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
                 if (currentDirectory.Parent != null)
                 {
-                    AutoUpdater.InstallationPath = currentDirectory.Parent.FullName;
+                    AutoUpdater.InstallationPath = AppDomain.CurrentDomain.BaseDirectory;
                 }
             };
             timer.Start();
