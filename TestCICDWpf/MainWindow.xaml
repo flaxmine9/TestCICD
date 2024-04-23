@@ -15,7 +15,7 @@
         VerticalAlignment="Center"
         Background="Green">
 
-        <Label Content="Hello CI/CD--2" FontSize="32" />
+        <Label Content="CI/CD suka" FontSize="32" />
 
     </Grid>
 </Window>
