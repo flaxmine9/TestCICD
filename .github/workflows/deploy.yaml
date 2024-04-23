@@ -57,5 +57,5 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/
-          server-dir: AutoDeploys4/
+          server-dir: AutoDeploys5/
           dry-run: true
