@@ -13,7 +13,7 @@
     <Grid
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        Background="Pink">
+        Background="Green">
 
         <Label Content="CI/CD" FontSize="32" />
 
