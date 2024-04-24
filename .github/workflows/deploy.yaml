@@ -73,6 +73,7 @@ jobs:
           state-name: .sync-state${{ steps.ExtractVersion.outputs.version }}.json
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
           server-dir: Project/
+
       - name: Deploy version
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
