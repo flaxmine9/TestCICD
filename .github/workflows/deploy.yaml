@@ -13,13 +13,6 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: Get version
-        id: ExtractVersion
-        shell: pwsh
-        run: |
-          $xml = [Xml] (Get-Content ./TestCICDWpf.csproj)
-          [string] $version = [Version] $xml.Project.PropertyGroup.Version 
-          echo "version=$($version)" >> $env:GITHUB_OUTPUT
       - uses: actions/checkout@v4
         with:
           lfs: true
@@ -36,7 +29,15 @@ jobs:
 
       - name: Publish
         run: dotnet publish ./TestCICDWpf.sln --configuration Release --no-restore
+        working-directory: ./TestCICDWpf
 
+      - name: Get version
+        id: ExtractVersion
+        shell: pwsh
+        run: |
+          $xml = [Xml] (Get-Content ./TestCICDWpf.csproj)
+          [string] $version = [Version] $xml.Project.PropertyGroup.Version 
+          echo "version=$($version)" >> $env:GITHUB_OUTPUT
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
