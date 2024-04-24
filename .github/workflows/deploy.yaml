@@ -6,9 +6,6 @@ on:
     branches:
       - master   
 
-env:
-   DOTNET_VERSION: "6.0.x"
-
 jobs:
   build:
     runs-on: windows-latest
@@ -20,7 +17,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-           dotnet-version: ${{ env.DOTNET_VERSION }}
+           dotnet-version: "6.0.x"
       - name: Restore
         run: dotnet restore
         working-directory: ./TestCICDWpf
@@ -55,11 +52,11 @@ jobs:
           path: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
 
       - name: Get version
-        id: ExtractVersion
+        id: extractVersion
         shell: pwsh
         run: |
           $xml = [Xml] (Get-Content ./TestCICDWpf/TestCICDWpf.csproj)
-          [string] $version = [Version] $xml.Project.PropertyGroup.Version 
+          [string] $version = [Version] $xml.Project.PropertyGroup.Version
           echo "version=$($version)" >> $env:GITHUB_OUTPUT
 
       - name: Deploy publish
@@ -70,7 +67,7 @@ jobs:
           password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
           protocol: ftps
           port: 21
-          state-name: .sync-state.json
+          state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
           server-dir: Project/
 
