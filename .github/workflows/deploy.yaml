@@ -56,7 +56,7 @@ jobs:
           password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
           protocol: ftps
           port: 21
-          state-name: "State/.sync-state.json"
+          state-name: .sync-state.json
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
           server-dir: Project/
       - name: Deploy version
