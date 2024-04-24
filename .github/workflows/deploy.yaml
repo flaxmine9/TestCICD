@@ -67,4 +67,4 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./.github/
-          server-dir: Project/Version
+          server-dir: Project/Version/
