@@ -62,9 +62,9 @@ jobs:
       - name: Deploy publish
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: eu-west-1.sftpcloud.io
-          username: a4fb7a14b0d14773b0b68c41434ec015
-          password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
+          server: eu-central-1.sftpcloud.io
+          username: ea066c0c2dde4e91b2d8b8b881df1304
+          password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
           protocol: ftps
           port: 21
           state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
@@ -74,9 +74,9 @@ jobs:
       - name: Deploy version
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: eu-west-1.sftpcloud.io
-          username: a4fb7a14b0d14773b0b68c41434ec015
-          password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
+          server: eu-central-1.sftpcloud.io
+          username: ea066c0c2dde4e91b2d8b8b881df1304
+          password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
           protocol: ftps
           port: 21
           local-dir: ./.github/
