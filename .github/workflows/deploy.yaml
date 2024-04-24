@@ -13,6 +13,11 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+      - name: Get version
+        id: package_version
+        uses: KageKirin/get-csproj-version@v1
+        with:
+          file: ./TestCICDWpf/TestCICDWpf.csproj
       - uses: actions/checkout@v4
         with:
           lfs: true
@@ -41,11 +46,6 @@ jobs:
     needs: build
     runs-on: windows-latest
     steps:
-      - name: Get version
-        id: package_version
-        uses: KageKirin/get-csproj-version@v1
-        with:
-          file: ./TestCICDWpf/TestCICDWpf.csproj
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Download artifact
