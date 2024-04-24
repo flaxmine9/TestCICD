@@ -17,7 +17,7 @@ jobs:
         id: package_version
         uses: KageKirin/get-csproj-version@v1
         with:
-          file: ${{ github.workspace }}\TestCICDWpf.csproj
+          file: ${{ github.workspace }}\TestCICDWpf\TestCICDWpf.csproj
       - uses: actions/checkout@v4
         with:
           lfs: true
