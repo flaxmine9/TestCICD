@@ -22,13 +22,15 @@ jobs:
         with:
            dotnet-version: ${{ env.DOTNET_VERSION }}
       - name: Restore
-        run: dotnet restore ./TestCICDWpf.sln
+        run: dotnet restore
+        working-directory: ./TestCICDWpf
 
       - name: Build
-        run: dotnet build ./TestCICDWpf.sln --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore
+        working-directory: ./TestCICDWpf
 
       - name: Publish
-        run: dotnet publish ./TestCICDWpf.sln --configuration Release --no-restore
+        run: dotnet publish --configuration Release --no-restore
         working-directory: ./TestCICDWpf
 
       - name: Get version
