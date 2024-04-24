@@ -41,6 +41,11 @@ jobs:
     needs: build
     runs-on: windows-latest
     steps:
+      - name: Get version
+        id: package_version
+        uses: KageKirin/get-csproj-version@v1
+        with:
+          file: ./TestCICDWpf.csproj
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Download artifact
@@ -56,7 +61,7 @@ jobs:
           password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
           protocol: ftps
           port: 21
-          state-name: .sync-state.json
+          state-name: .sync-state${{ steps.package_version.version }}.json
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
           server-dir: Project/
       - name: Deploy version
