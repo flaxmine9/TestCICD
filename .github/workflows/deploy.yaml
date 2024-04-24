@@ -33,13 +33,6 @@ jobs:
         run: dotnet publish --configuration Release --no-restore
         working-directory: ./TestCICDWpf
 
-      - name: Get version
-        id: ExtractVersion
-        shell: pwsh
-        run: |
-          $xml = [Xml] (Get-Content ./TestCICDWpf/TestCICDWpf.csproj)
-          [string] $version = [Version] $xml.Project.PropertyGroup.Version 
-          echo "version=$($version)" >> $env:GITHUB_OUTPUT
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
@@ -51,13 +44,24 @@ jobs:
     needs: build
     runs-on: windows-latest
     steps:
+    
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: Build
           path: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
+
+      - name: Get version
+        id: ExtractVersion
+        shell: pwsh
+        run: |
+          $xml = [Xml] (Get-Content ./TestCICDWpf/TestCICDWpf.csproj)
+          [string] $version = [Version] $xml.Project.PropertyGroup.Version 
+          echo "version=$($version)" >> $env:GITHUB_OUTPUT
+
       - name: Deploy publish
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -66,7 +70,7 @@ jobs:
           password: riVgMWA3Y93J1fV2Vw8NlnZmCPYJgmzj
           protocol: ftps
           port: 21
-          state-name: .sync-state${{ steps.package_version.version }}.json
+          state-name: .sync-state${{ steps.ExtractVersion.outputs.version }}.json
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
           server-dir: Project/
       - name: Deploy version
