@@ -14,10 +14,12 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Get version
-        id: package_version
-        uses: KageKirin/get-csproj-version@v1
-        with:
-          file: ./${{ github.workspace }}\TestCICDWpf\TestCICDWpf.csproj
+        id: ExtractVersion
+        shell: pwsh
+        run: |
+          $xml = [Xml] (Get-Content ./TestCICDWpf/TestCICDWpf.csproj)
+          [string] $version = [Version] $xml.Project.PropertyGroup.Version 
+          echo "version=$($version)" >> $env:GITHUB_OUTPUT
       - uses: actions/checkout@v4
         with:
           lfs: true
