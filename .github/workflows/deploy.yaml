@@ -37,7 +37,7 @@ jobs:
         id: ExtractVersion
         shell: pwsh
         run: |
-          $xml = [Xml] (Get-Content ./TestCICDWpf.csproj)
+          $xml = [Xml] (Get-Content ./TestCICDWpf/TestCICDWpf.csproj)
           [string] $version = [Version] $xml.Project.PropertyGroup.Version 
           echo "version=$($version)" >> $env:GITHUB_OUTPUT
       - name: Upload
