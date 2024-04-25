@@ -4,9 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
-    <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>1.0.3</Version>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 

@@ -13,9 +13,9 @@
     <Grid
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        Background="Blue">
+        Background="Green">
 
-        <Label Content="CI/CD 2" FontSize="32" />
+        <Label Content="CI/CD" FontSize="32" />
 
     </Grid>
 </Window>
