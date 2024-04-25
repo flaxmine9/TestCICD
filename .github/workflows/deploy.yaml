@@ -75,6 +75,9 @@ jobs:
           port: 21
           local-dir: ./StateFolder/
           server-dir: Project/
+      
+      - name: Delete
+        run: Delete-Item -Path . -Name "StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
 
       - name: Deploy publish
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
