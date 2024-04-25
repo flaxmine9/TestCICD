@@ -61,6 +61,7 @@ jobs:
           echo "version=$($version)" >> $env:GITHUB_OUTPUT
 
       - name: Create empty json file
+        shell: pwsh
         run: |
             New-Item -Path . -Name "StateFolder" -ItemType "directory"
             New-Item -Path . -Name "StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
@@ -77,6 +78,7 @@ jobs:
           server-dir: Project/
       
       - name: Delete
+        shell: pwsh
         run: Delete-Item -Path . -Name "StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
 
       - name: Deploy publish
