@@ -13,9 +13,10 @@
     <Grid
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        Background="Azure">
+        Background="Aquamarine">
 
         <StackPanel>
+            <Label Content="CI/CD and update" FontSize="32" />
             <Label Content="CI/CD and update" FontSize="32" />
         </StackPanel>
 
