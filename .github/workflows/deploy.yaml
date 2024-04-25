@@ -76,25 +76,25 @@ jobs:
           local-dir: ./StateFolder/
           server-dir: Project/
 
-      # - name: Deploy publish
-      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      #   with:
-      #     server: eu-central-1.sftpcloud.io
-      #     username: ea066c0c2dde4e91b2d8b8b881df1304
-      #     password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
-      #     protocol: ftps
-      #     port: 21
-      #     state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
-      #     local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
-      #     server-dir: Project/
+      - name: Deploy publish
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: eu-central-1.sftpcloud.io
+          username: ea066c0c2dde4e91b2d8b8b881df1304
+          password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
+          protocol: ftps
+          port: 21
+          state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
+          local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
+          server-dir: Project/
 
-      # - name: Deploy version
-      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      #   with:
-      #     server: eu-central-1.sftpcloud.io
-      #     username: ea066c0c2dde4e91b2d8b8b881df1304
-      #     password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
-      #     protocol: ftps
-      #     port: 21
-      #     local-dir: ./.github/
-      #     server-dir: Project/Version/
+      - name: Deploy version
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: eu-central-1.sftpcloud.io
+          username: ea066c0c2dde4e91b2d8b8b881df1304
+          password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
+          protocol: ftps
+          port: 21
+          local-dir: ./.github/
+          server-dir: Project/Version/
