@@ -11,6 +11,9 @@ jobs:
     runs-on: windows-latest
     steps:
       
+      - name: Create empty json file
+        run: New-Item -Path . -Name "/StateFolder/file.json" -ItemType "file"
+
       - uses: actions/checkout@v4
         with:
           lfs: true
