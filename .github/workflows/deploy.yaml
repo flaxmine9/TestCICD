@@ -12,7 +12,7 @@ jobs:
     steps:
       
       - name: Create file
-        run: New-Item -Path . -Name "file.txt" -ItemType "file" -Value "Текстовая строка"
+        run: New-Item -Path . -Name "file.json" -ItemType "file"
 
       - uses: actions/checkout@v4
         with:
