@@ -1,2 +1,2 @@
-new:.sync-state-v1.1.5
-previous:.sync-state-v1.1.4
+new:.sync-state-v1.1.6
+previous:.sync-state-v1.1.5
