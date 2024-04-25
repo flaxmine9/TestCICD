@@ -19,6 +19,7 @@
             <Label Content="CI/CD and update" FontSize="32" />
             <Label Content="CI/CD and update" FontSize="32" />
             <Label Content="CI/CD and update" FontSize="32" />
+            <Label Content="CI/CD and update" FontSize="32" />
         </StackPanel>
 
     </Grid>
