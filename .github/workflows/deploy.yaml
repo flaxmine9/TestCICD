@@ -11,9 +11,6 @@ jobs:
     runs-on: windows-latest
     steps:
       
-      - name: Create file
-        run: New-Item -Path . -Name "file.json" -ItemType "file"
-
       - uses: actions/checkout@v4
         with:
           lfs: true
@@ -63,8 +60,22 @@ jobs:
           [string] $version = [Version] $xml.Project.PropertyGroup.Version
           echo "version=$($version)" >> $env:GITHUB_OUTPUT
 
+      - name: Create empty json file
+        run: New-Item -Path . -Name ".sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
+
+      - name: Deploy state file
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: eu-central-1.sftpcloud.io
+          username: ea066c0c2dde4e91b2d8b8b881df1304
+          password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
+          protocol: ftps
+          port: 21
+          local-dir: ./.sync-state-v${{ steps.extractVersion.outputs.version }}.json
+          server-dir: Project/
+
       - name: Deploy publish
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: eu-central-1.sftpcloud.io
           username: ea066c0c2dde4e91b2d8b8b881df1304
