@@ -12,7 +12,7 @@ jobs:
     steps:
       
       - name: Create empty json file
-        run: New-Item -Path . -Name "/StateFolder/file.json" -ItemType "file"
+        run: New-Item -Path . -Name "StateFolder" -ItemType "folder"
 
       - uses: actions/checkout@v4
         with:
