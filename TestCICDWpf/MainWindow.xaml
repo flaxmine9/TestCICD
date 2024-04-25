@@ -15,7 +15,7 @@
         VerticalAlignment="Center"
         Background="Green">
 
-        <Label Content="CI/CD" FontSize="32" />
+        <Label Content="CI/CD and update" FontSize="32" />
 
     </Grid>
 </Window>
