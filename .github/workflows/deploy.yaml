@@ -71,7 +71,7 @@ jobs:
           password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
           protocol: ftps
           port: 21
-          local-dir: ./.sync-state-v${{ steps.extractVersion.outputs.version }}.json
+          local-dir: ./.sync-state-v${{ steps.extractVersion.outputs.version }}.json/
           server-dir: Project/
 
       - name: Deploy publish
