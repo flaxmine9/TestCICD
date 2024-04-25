@@ -58,12 +58,12 @@ namespace TestCICDWpf
             var boolDownload = _client.DownloadBytes(out var bytes, remotePath: remotePath);
             if (boolDownload)
             {
-                var serverVersion = Encoding.UTF8.GetString(bytes).Split(".sync-state-v").Last();
+                var splittedVersions = Encoding.UTF8.GetString(bytes).Split("\r\n");
 
-                var splitted = serverVersion.Split('.');
-                if (splitted.Any())
+                var newServerVersion = splittedVersions[0].Replace("new:", string.Empty).Split("-v").Last().Split('.');
+                if (newServerVersion.Any())
                 {
-                    return new Version(Convert.ToInt32(splitted[0]), Convert.ToInt32(splitted[1]), Convert.ToInt32(splitted[2]), 0);
+                    return new Version(Convert.ToInt32(newServerVersion[0]), Convert.ToInt32(newServerVersion[1]), Convert.ToInt32(newServerVersion[2]), 0);
                 }
             }
 
