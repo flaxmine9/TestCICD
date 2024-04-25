@@ -10,12 +10,7 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      
-      - name: Create empty json file
-        run: |
-            New-Item -Path . -Name "StateFolder" -ItemType "directory"
-            New-Item -Path . -Name "StateFolder/file.json" -ItemType "file"
-
+     
       - uses: actions/checkout@v4
         with:
           lfs: true
@@ -66,7 +61,9 @@ jobs:
           echo "version=$($version)" >> $env:GITHUB_OUTPUT
 
       - name: Create empty json file
-        run: New-Item -Path . -Name ".sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
+        run: |
+            New-Item -Path . -Name "StateFolder" -ItemType "directory"
+            New-Item -Path . -Name "StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
 
       - name: Deploy state file
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -76,28 +73,28 @@ jobs:
           password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
           protocol: ftps
           port: 21
-          local-dir: ./.sync-state-v${{ steps.extractVersion.outputs.version }}.json/
+          local-dir: ./StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json/
           server-dir: Project/
 
-      - name: Deploy publish
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: eu-central-1.sftpcloud.io
-          username: ea066c0c2dde4e91b2d8b8b881df1304
-          password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
-          protocol: ftps
-          port: 21
-          state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
-          local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
-          server-dir: Project/
+      # - name: Deploy publish
+      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      #   with:
+      #     server: eu-central-1.sftpcloud.io
+      #     username: ea066c0c2dde4e91b2d8b8b881df1304
+      #     password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
+      #     protocol: ftps
+      #     port: 21
+      #     state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
+      #     local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
+      #     server-dir: Project/
 
-      - name: Deploy version
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: eu-central-1.sftpcloud.io
-          username: ea066c0c2dde4e91b2d8b8b881df1304
-          password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
-          protocol: ftps
-          port: 21
-          local-dir: ./.github/
-          server-dir: Project/Version/
+      # - name: Deploy version
+      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      #   with:
+      #     server: eu-central-1.sftpcloud.io
+      #     username: ea066c0c2dde4e91b2d8b8b881df1304
+      #     password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
+      #     protocol: ftps
+      #     port: 21
+      #     local-dir: ./.github/
+      #     server-dir: Project/Version/
