@@ -10,6 +10,10 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+      
+      - name: Create file
+        run: New-Item -Path . -Name "file.txt" -ItemType "file" -Value "Текстовая строка"
+
       - uses: actions/checkout@v4
         with:
           lfs: true
