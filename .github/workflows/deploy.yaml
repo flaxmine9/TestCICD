@@ -60,7 +60,7 @@ jobs:
           echo "version=$($version)" >> $env:GITHUB_OUTPUT
 
       - name: Deploy publish
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: eu-central-1.sftpcloud.io
           username: ea066c0c2dde4e91b2d8b8b881df1304
