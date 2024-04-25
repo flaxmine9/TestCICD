@@ -13,7 +13,7 @@
     <Grid
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        Background="LightBlue">
+        Background="Green">
 
         <StackPanel>
             <Label Content="CI/CD and update" FontSize="32" />
