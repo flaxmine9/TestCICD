@@ -77,9 +77,9 @@ jobs:
           local-dir: ./StateFolder/
           server-dir: Project/
       
-      - name: Delete
+      - name: Delete files
         shell: pwsh
-        run: Delete-Item -Path . -Name "StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
+        run: Remove-Item -Path "StateFolder/*.json" -Force
 
       - name: Deploy publish
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
