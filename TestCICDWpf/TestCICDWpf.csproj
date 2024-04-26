@@ -6,11 +6,12 @@
     <Nullable>enable</Nullable>
     <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bybit.Net" Version="3.8.3" />
     <PackageReference Include="FluentFTP" Version="50.0.1" />
   </ItemGroup>
 
