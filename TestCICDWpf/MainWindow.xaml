@@ -13,7 +13,7 @@
     <Grid
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        Background="Green">
+        Background="Red">
 
         <StackPanel>
             <Label Content="Added bybit" FontSize="32" />

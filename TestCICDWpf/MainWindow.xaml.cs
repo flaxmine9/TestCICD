@@ -30,11 +30,8 @@ namespace TestCICDWpf
                 if (Process.GetProcessesByName("AutoUpdater").Any())
                     return;
 
-                Version newVersion = CheckNewVersion("Project/Version/test.txt");
-
-                var versionApp = Assembly.GetEntryAssembly()!.GetName().Version!;
-
-                //string currentVersion = versionApp.Major + "." + versionApp.Minor + "." + versionApp.Build;
+                Version newVersion = CheckNewVersion("VersionProject/version.txt");
+                Version versionApp = Assembly.GetEntryAssembly()!.GetName().Version!;
 
                 if (newVersion != versionApp)
                 {
@@ -58,12 +55,10 @@ namespace TestCICDWpf
             var boolDownload = _client.DownloadBytes(out var bytes, remotePath: remotePath);
             if (boolDownload)
             {
-                var splittedVersions = Encoding.UTF8.GetString(bytes).Split("\r\n");
-
-                var newServerVersion = splittedVersions[0].Replace("new:", string.Empty).Split("-v").Last().Split('.');
-                if (newServerVersion.Any())
+                var splittedVersions = Encoding.UTF8.GetString(bytes).Split('.');
+                if (splittedVersions.Any())
                 {
-                    return new Version(Convert.ToInt32(newServerVersion[0]), Convert.ToInt32(newServerVersion[1]), Convert.ToInt32(newServerVersion[2]), 0);
+                    return new Version(Convert.ToInt32(splittedVersions[0]), Convert.ToInt32(splittedVersions[1]), Convert.ToInt32(splittedVersions[2]), 0);
                 }
             }
 
