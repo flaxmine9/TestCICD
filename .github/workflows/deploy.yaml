@@ -6,36 +6,36 @@ on:
     branches:
       - master   
 
-# jobs:
-#   build:
-#     runs-on: windows-latest
-#     steps:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
      
-#       - uses: actions/checkout@v4
-#         with:
-#           lfs: true
-#           fetch-depth: 2
-#       - name: Setup .NET
-#         uses: actions/setup-dotnet@v4
-#         with:
-#            dotnet-version: "6.0.x"
-#       - name: Restore
-#         run: dotnet restore
-#         working-directory: ./TestCICDWpf
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          fetch-depth: 2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+           dotnet-version: "6.0.x"
+      - name: Restore
+        run: dotnet restore
+        working-directory: ./TestCICDWpf
 
-#       - name: Build
-#         run: dotnet build --configuration Release --no-restore
-#         working-directory: ./TestCICDWpf
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+        working-directory: ./TestCICDWpf
 
-#       - name: Publish
-#         run: dotnet publish --configuration Release --no-restore
-#         working-directory: ./TestCICDWpf
+      - name: Publish
+        run: dotnet publish --configuration Release --no-restore
+        working-directory: ./TestCICDWpf
 
-#       - name: Upload
-#         uses: actions/upload-artifact@v4
-#         with:
-#           name: Build
-#           path: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: Build
+          path: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
         
   deploy:
     name: Deploy
@@ -66,6 +66,11 @@ on:
       #       New-Item -Path . -Name "StateFolder" -ItemType "directory"
       #       New-Item -Path . -Name "StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
 
+      
+      - name: Create empty json file
+        shell: pwsh
+        run: New-Item -Path . -Name "./TestCICDWpf/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
+
       # - name: Deploy state file
       #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       #   with:
@@ -94,13 +99,13 @@ on:
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
           server-dir: Project/
 
-      - name: Deploy version
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: eu-central-1.sftpcloud.io
-          username: ea066c0c2dde4e91b2d8b8b881df1304
-          password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
-          protocol: ftps
-          port: 21
-          local-dir: ./.github/
-          server-dir: Project/Version/
+      # - name: Deploy version
+      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      #   with:
+      #     server: eu-central-1.sftpcloud.io
+      #     username: ea066c0c2dde4e91b2d8b8b881df1304
+      #     password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
+      #     protocol: ftps
+      #     port: 21
+      #     local-dir: ./.github/
+      #     server-dir: Project/Version/
