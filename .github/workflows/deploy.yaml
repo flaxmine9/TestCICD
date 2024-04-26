@@ -6,7 +6,7 @@ on:
     branches:
       - master   
 
-# jobs:
+jobs:
 #   build:
 #     runs-on: windows-latest
 #     steps:
@@ -39,7 +39,7 @@ on:
         
   deploy:
     name: Deploy
-    needs: build
+    # needs: build
     runs-on: windows-latest
     steps:
     
