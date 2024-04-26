@@ -13,10 +13,10 @@
     <Grid
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        Background="Green">
+        Background="Blue">
 
         <StackPanel>
-            <Label Content="Added bybit" FontSize="32" />
+            <Label Content="Updater" FontSize="32" />
         </StackPanel>
 
     </Grid>
