@@ -67,9 +67,9 @@ jobs:
       #       New-Item -Path . -Name "StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
 
       
-      # - name: Create empty json file
-      #   shell: pwsh
-      #   run: New-Item -Path . -Name "./TestCICDWpf/bin/Release/net6.0-windows/publish/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
+      - name: Create empty json file
+        shell: pwsh
+        run: New-Item -Path . -Name "./TestCICDWpf/bin/Release/net6.0-windows/publish/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
 
       # - name: Deploy state file
       #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -97,7 +97,7 @@ jobs:
           port: 21
           state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
-          server-dir: Project3/
+          server-dir: Project4/
 
       # - name: Deploy version
       #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
