@@ -52,13 +52,13 @@ jobs:
           name: Build
           path: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
 
-      - name: Get version
-        id: extractVersion
-        shell: pwsh
-        run: |
-          $xml = [Xml] (Get-Content ./TestCICDWpf/TestCICDWpf.csproj)
-          [string] $version = [Version] $xml.Project.PropertyGroup.Version
-          echo "version=$($version)" >> $env:GITHUB_OUTPUT
+      # - name: Get version
+      #   id: extractVersion
+      #   shell: pwsh
+      #   run: |
+      #     $xml = [Xml] (Get-Content ./TestCICDWpf/TestCICDWpf.csproj)
+      #     [string] $version = [Version] $xml.Project.PropertyGroup.Version
+      #     echo "version=$($version)" >> $env:GITHUB_OUTPUT
 
       # - name: Create empty json file
       #   shell: pwsh
@@ -67,9 +67,9 @@ jobs:
       #       New-Item -Path . -Name "StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
 
       
-      - name: Create empty json file
-        shell: pwsh
-        run: New-Item -Path . -Name "./TestCICDWpf/bin/Release/net6.0-windows/publish/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
+      # - name: Create empty json file
+      #   shell: pwsh
+      #   run: New-Item -Path . -Name "./TestCICDWpf/bin/Release/net6.0-windows/publish/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
 
       # - name: Deploy state file
       #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -95,9 +95,9 @@ jobs:
           password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
           protocol: ftps
           port: 21
-          state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
+          # state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
           local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
-          server-dir: Project/
+          server-dir: Project2/
 
       # - name: Deploy version
       #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
