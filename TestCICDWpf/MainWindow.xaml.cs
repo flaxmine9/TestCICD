@@ -33,7 +33,7 @@ namespace TestCICDWpf
                 Version newVersion = CheckNewVersion("VersionProject/version.txt");
                 Version versionApp = Assembly.GetEntryAssembly()!.GetName().Version!;
 
-                if (newVersion != versionApp)
+                if (newVersion == versionApp)
                 {
                     var msg = MessageBox.Show("Новое обновление", "Обновление", MessageBoxButton.YesNo);
                     if (msg == MessageBoxResult.Yes)
@@ -41,7 +41,7 @@ namespace TestCICDWpf
                         var currentProcess = Process.GetCurrentProcess();
 
                         // Запускаем процесс автоапдейтера (.exe)
-                        Process.Start(currentProcess.MainModule!.FileName!.Replace(currentProcess.MainModule.ModuleName!, @"AutoUpdater/AutoUpdater.exe"));
+                        Process.Start(currentProcess.MainModule!.FileName!.Replace(currentProcess.MainModule.ModuleName!, @"AutoUpdater\AutoUpdater.exe"));
 
                         currentProcess.CloseMainWindow();
                     }
