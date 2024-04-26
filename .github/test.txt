@@ -1,2 +1,0 @@
-new:.sync-state-v1.0.2
-previous:.sync-state-v1.0.1
