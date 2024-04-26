@@ -100,5 +100,5 @@ jobs:
           password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
           protocol: ftps
           port: 21
-          local-dir: ./.github/Version
+          local-dir: ./.github/Version/
           server-dir: VersionProject/
