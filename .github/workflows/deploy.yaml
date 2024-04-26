@@ -74,7 +74,7 @@ jobs:
           password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
           protocol: ftps
           port: 21
-          dry-run: true
+          # dry-run: true
           local-dir: ./StateFolder/
           server-dir: Project/
       
