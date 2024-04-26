@@ -6,7 +6,7 @@ on:
     branches:
       - master   
 
-jobs:
+# jobs:
 #   build:
 #     runs-on: windows-latest
 #     steps:
@@ -39,18 +39,18 @@ jobs:
         
   deploy:
     name: Deploy
-    # needs: build
+    needs: build
     runs-on: windows-latest
     steps:
     
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # - name: Download artifact
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: Build
-      #     path: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Build
+          path: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
 
       - name: Get version
         id: extractVersion
@@ -60,13 +60,29 @@ jobs:
           [string] $version = [Version] $xml.Project.PropertyGroup.Version
           echo "version=$($version)" >> $env:GITHUB_OUTPUT
 
-      - name: Create empty json file
-        shell: pwsh
-        run: |
-            New-Item -Path . -Name "StateFolder" -ItemType "directory"
-            New-Item -Path . -Name "StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
+      # - name: Create empty json file
+      #   shell: pwsh
+      #   run: |
+      #       New-Item -Path . -Name "StateFolder" -ItemType "directory"
+      #       New-Item -Path . -Name "StateFolder/.sync-state-v${{ steps.extractVersion.outputs.version }}.json" -ItemType "file"
 
-      - name: Deploy state file
+      # - name: Deploy state file
+      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      #   with:
+      #     server: eu-central-1.sftpcloud.io
+      #     username: ea066c0c2dde4e91b2d8b8b881df1304
+      #     password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
+      #     protocol: ftps
+      #     port: 21
+      #     # dry-run: true
+      #     local-dir: ./StateFolder/
+      #     server-dir: Project/
+      
+      # - name: Delete files
+      #   shell: pwsh
+      #   run: Remove-Item -Path "StateFolder/*.json" -Force
+
+      - name: Deploy publish
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: eu-central-1.sftpcloud.io
@@ -74,33 +90,17 @@ jobs:
           password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
           protocol: ftps
           port: 21
-          # dry-run: true
-          local-dir: ./StateFolder/
+          state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
+          local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
           server-dir: Project/
-      
-      # - name: Delete files
-      #   shell: pwsh
-      #   run: Remove-Item -Path "StateFolder/*.json" -Force
 
-      # - name: Deploy publish
-      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      #   with:
-      #     server: eu-central-1.sftpcloud.io
-      #     username: ea066c0c2dde4e91b2d8b8b881df1304
-      #     password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
-      #     protocol: ftps
-      #     port: 21
-      #     state-name: .sync-state-v${{ steps.extractVersion.outputs.version }}.json
-      #     local-dir: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
-      #     server-dir: Project/
-
-      # - name: Deploy version
-      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      #   with:
-      #     server: eu-central-1.sftpcloud.io
-      #     username: ea066c0c2dde4e91b2d8b8b881df1304
-      #     password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
-      #     protocol: ftps
-      #     port: 21
-      #     local-dir: ./.github/
-      #     server-dir: Project/Version/
+      - name: Deploy version
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: eu-central-1.sftpcloud.io
+          username: ea066c0c2dde4e91b2d8b8b881df1304
+          password: JpADT8knYnuULHwDfSdTUd8oioPGF25E
+          protocol: ftps
+          port: 21
+          local-dir: ./.github/
+          server-dir: Project/Version/
