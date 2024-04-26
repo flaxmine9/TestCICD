@@ -15,8 +15,6 @@ namespace TestCICDWpf
 
         private FtpClient _client;
 
-        private bool _isOpen = false;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -33,7 +31,7 @@ namespace TestCICDWpf
                 Version newVersion = CheckNewVersion("VersionProject/version.txt");
                 Version versionApp = Assembly.GetEntryAssembly()!.GetName().Version!;
 
-                if (newVersion == versionApp)
+                if (newVersion != versionApp)
                 {
                     var msg = MessageBox.Show("Новое обновление", "Обновление", MessageBoxButton.YesNo);
                     if (msg == MessageBoxResult.Yes)
