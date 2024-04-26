@@ -41,7 +41,7 @@ namespace TestCICDWpf
                         var currentProcess = Process.GetCurrentProcess();
 
                         // Запускаем процесс автоапдейтера (.exe)
-                        Process.Start(currentProcess.MainModule!.FileName!.Replace(currentProcess.MainModule.ModuleName!, "AutoUpdater.exe"));
+                        Process.Start(currentProcess.MainModule!.FileName!.Replace(currentProcess.MainModule.ModuleName!, @"AutoUpdater/AutoUpdater.exe"));
 
                         currentProcess.CloseMainWindow();
                     }
