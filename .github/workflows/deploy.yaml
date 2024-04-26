@@ -46,11 +46,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: Build
-          path: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
+      # - name: Download artifact
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: Build
+      #     path: ./TestCICDWpf/bin/Release/net6.0-windows/publish/
 
       - name: Get version
         id: extractVersion
