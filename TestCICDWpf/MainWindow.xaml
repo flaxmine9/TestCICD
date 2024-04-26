@@ -13,7 +13,7 @@
     <Grid
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        Background="DarkGray">
+        Background="Khaki">
 
         <StackPanel>
             <Label Content="Updater" FontSize="32" />
